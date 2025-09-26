@@ -111,6 +111,27 @@ Thank you for considering contributing to Music Player GO! We welcome contributi
 * While there is no strict coding style for this project, we encourage you to strive for consistency within the existing codebase and UI following with the minimalistic aesthetic of the application.
 * Please make sure to look at the the [FAQ's](FAQ.md), [Privacy Policy](PRIVACY_POLICY.md), [Formats](FORMATS.md), [libraries we utilize](LIBS.md), and [our license](LICENSE.md) before you get started to familiairze yourself with our app and frameworks.
 
+## Environmental requirements
+
+JDK version: Eclipse Temurin 17.0.16+
+
+Gradle version: 8.0
+
+Android SDK: It needs to include API 33 (Android 13)
+
+Android Studio: Version 2022.3.1 or higher
+
+## Compilation configuration
+
+Compilation SDK version: 33
+
+Minimum SDK version: 21 (Android 5.0)
+
+Target SDK version: 33
+
+Kotlin version: 1.8.21
+
+# The steps of "from zero to run"
 
 To get started, you would need to clone/fork this repository:
 - Note *user* refers to your GitHub username
@@ -126,6 +147,16 @@ cd Music-Player-GO
 git clone https://github.com/*user*/Music-Player-GO.git
 
 cd Music-Player-GO
+
+Then you can use Android Studio to open the "project" folder
+
+### Environment Download
+
+Most of environments will be downloaded by Android Studio automatically.
+
+For JDK version, you can choose "settings"- "Bulid, Excution, Deployment"- "Bulid Tools"- "Gradle". Choose "Gradle JDK" and download Eclipse Temurin 17.0.16. Then you can run the app in Android Studio.
+
+
 
 # License
 
