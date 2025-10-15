@@ -165,3 +165,109 @@ For JDK version, you can choose "settings"- "Bulid, Excution, Deployment"- "Buli
 
 This repository is copylefted libre software, licensed [GPLv3](https://www.gnu.org/licenses/#GPL), as described in the [LICENSE](LICENSE.md) file.
 Use, study, change and share at will; with all.
+
+
+
+# code function 目录与文件职责速览（Kotlin/Android 常见分层）
+
+### dialogs（弹窗与底部面板）
+
+Dialogs：集中创建/显示各类对话框的入口或工具。
+
+FavoritesAdapter：收藏列表的 RecyclerView 适配器。
+
+NowPlaying：显示“正在播放”曲目的弹窗/底部面板。
+
+QueueAdapter：播放队列列表适配器。
+
+RecyclerSheet：可复用的“底部抽屉/列表”组件。
+
+### equalizer（均衡器）
+
+EqualizerActivity：均衡器独立页面（Activity），负责创建 Fragment、处理返回键等。
+
+EqualizerFragment：均衡器 UI 与逻辑（预设、频段滑条、开关等）。
+
+### extensions（Kotlin 扩展）
+
+MusicExts.kt：对 Music/播放相关类的扩展函数（如格式化时长、专辑艺人拼接等）。
+
+ViewExts.kt：对 View/UI 的扩展（如简化点击、可见性、主题色应用等）。
+
+### fragments（主要内容页）
+
+AllMusicFragment：全部歌曲列表页（扫描结果、排序、搜索、点击播放/加入队列）。
+
+DetailsFragment：专辑/艺人/文件夹等“容器”下的明细歌曲列表。
+
+ErrorFragment：无权限/无媒体/异常时的错误占位页。
+
+MusicContainersFragment：按“容器”（专辑、艺人、文件夹、收藏等）分组的一级页签/网格。
+
+### models（数据模型）
+
+Album：专辑实体（名称、艺人、封面 id、曲目数等）。
+
+Music：歌曲实体（id、uri/path、标题、专辑/艺人、时长、位置信息、标签等）。
+
+NotificationAction：通知栏动作的模型（播放/暂停/下一首等）。
+
+SavedEqualizerSettings：均衡器预设/用户保存的配置。
+
+Sorting：排序策略与字段（按标题、专辑、日期等）。
+
+### player（播放内核与前台服务）
+
+MediaButtonReceiver：耳机线控/车载/蓝牙媒体按键接收。
+
+MediaPlayerHolder.kt：实际的播放器封装（ExoPlayer/MediaPlayer 的持有者；播放、暂停、seek、队列、回调）。
+
+MediaPlayerInterface：对外暴露的播放控制接口（播放/暂停/上一首/下一首/设置队列等）。
+
+MediaPlayerUtils：与播放相关的工具函数（音频焦点、会话、格式兼容等）。
+
+MusicNotificationManager：前台服务的媒体样式通知（封面、标题、动作按钮）。
+
+PlayerService.kt：前台服务（保持播放常驻、通知控制、音频焦点、后台存活）。
+
+TileService.kt：快捷设置磁贴（下拉快捷开关）控制播放或打开应用。
+
+### preferences（设置页与适配器）
+
+AccentsAdapter：主题/强调色选择列表适配器。
+
+ActiveTabsAdapter：主页显示哪些 Tab 的适配器（歌曲/专辑/艺人/文件夹/收藏等）。
+
+ContextUtils：与 Context/主题/本地化/尺寸相关的工具。
+
+FiltersAdapter：过滤条件适配器（如时长>30s、仅本地文件等）。
+
+NotificationActionsAdapter：自定义通知栏按钮顺序/显示的适配器。
+
+PreferencesFragment：“偏好设置”子页（具体项分组）。
+
+SettingsFragment：设置总页（入口，承载多个子设置 Fragment）。
+
+### ui（界面层通用）
+
+ItemSwipeCallback / ItemTouchCallback：RecyclerView 滑动/拖拽回调（删除、置顶、拖动排序等）。
+
+MainActivity：应用主入口（TabLayout + ViewPager2、Fragment 容器、权限申请、菜单）。
+
+MediaControlInterface：上层 UI 可调用的媒体控制接口（面向 Fragment/Activity）。
+
+SingleClickHelper：防止快速连点的工具。
+
+UIControlInterface：UI 交互通用接口（切换页签、显示面板、SnackBar 等）。
+
+### utils（基础设施与全局状态）
+
+BaseActivity：通用基类（主题、系统栏、沉浸式、公共事件）。
+
+GoApp：Application 子类（初始化日志、播放器、首选项、主题、媒体库扫描）。
+
+GoConstants：常量定义（Intent key、默认值、请求码、渠道名等）。
+
+GoPreferences：SharedPreferences 读写封装（用户设置、首次启动、上次播放等）。
+
+MusicViewModel：共享 ViewModel（选中项、当前队列、播放状态、筛选/排序、UI 事件分发）。
